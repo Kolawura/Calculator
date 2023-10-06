@@ -58,12 +58,25 @@ body {
 .sub,
 .add {
     background-color: orange !important;
+    color: #ddd;
 }
 
 button.equal {
     background-color: green !important;
+    color: #ddd;
 }
 
 .clear {
     background-color: red !important;
+    color: #ddd;
+}
+
+.answer {
+    background-color: #0077ff !important;
+    color: #ddd;
+}
+
+.delete {
+    background-color: #000 !important;
+    color: #ddd;
 }

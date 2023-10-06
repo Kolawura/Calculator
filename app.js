@@ -2,17 +2,20 @@ const buttons = document.querySelectorAll(".btn");
 const equal = document.querySelector(".equal");
 const clear = document.querySelector(".clear");
 const screen = document.querySelector(".screen");
+const del = document.querySelector(".delete");
+const answer = document.querySelector(".answer");
 
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
     e.preventDefault();
     let value = e.target.dataset.num;
-    if (screen.value === '' && e.target.dataset.num === '.'){
-            screen.value = '0';
+    if (screen.value === "" && e.target.dataset.num === ".") {
+      screen.value = "0";
     }
     screen.value += value;
   });
 });
+let result;
 
 equal.addEventListener("click", (e) => {
   console.log(screen.value);
@@ -21,8 +24,9 @@ equal.addEventListener("click", (e) => {
     screen.value = "";
   } else {
     try {
-      let result = new Function("return " + screen.value)();
+      result = new Function("return " + screen.value)();
       if (typeof result === "number" && isFinite(result)) {
+        localStorage.setItem("ansResult", JSON.stringify(result));
         screen.value = result;
       } else {
         screen.value = "Syntax Error";
@@ -32,7 +36,22 @@ equal.addEventListener("click", (e) => {
     }
   }
 });
+answer.addEventListener("click", () => {
+  let ansResult = JSON.parse(localStorage.getItem("ansResult"));
+  if (typeof ansResult === "number" && isFinite(ansResult)) {
+    screen.value += ansResult;
+  }
+});
 
-clear.addEventListener("click", (e) => {
+del.addEventListener("click", () => {
+  let x = screen.value.length - 1;
+  console.log(x);
+  let newValue = screen.value.slice(0, x);
+  console.log(newValue);
+
+  screen.value = newValue;
+});
+
+clear.addEventListener("click", () => {
   screen.value = "";
 });

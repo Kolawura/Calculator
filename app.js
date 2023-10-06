@@ -18,7 +18,6 @@ buttons.forEach((button) => {
 let result;
 
 equal.addEventListener("click", (e) => {
-  console.log(screen.value);
   e.preventDefault();
   if (screen.value === "") {
     screen.value = "";
@@ -45,10 +44,7 @@ answer.addEventListener("click", () => {
 
 del.addEventListener("click", () => {
   let x = screen.value.length - 1;
-  console.log(x);
   let newValue = screen.value.slice(0, x);
-  console.log(newValue);
-
   screen.value = newValue;
 });
 
